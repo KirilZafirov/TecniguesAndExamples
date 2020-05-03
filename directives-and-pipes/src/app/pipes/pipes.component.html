@@ -1,0 +1,16 @@
+
+  <div class="container" style="margin: 40px 0;">
+        <nav mat-tab-nav-bar [backgroundColor]="background"> 
+                <a mat-tab-link *ngFor="let link of links"
+                         [routerLink]="link.navigationLink"
+                        [active]="activeLink == link.index"> {{link.name}} 
+                </a>
+        </nav>
+        
+        <div class="content" role="main">
+                <router-outlet></router-outlet>
+        </div>
+
+</div>
+
+

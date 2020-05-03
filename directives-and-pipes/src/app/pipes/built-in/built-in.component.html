@@ -1,0 +1,86 @@
+
+
+  <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="true"  hideToggle>
+                  <mat-expansion-panel-header>
+                          <mat-panel-title>
+                                  <h2>common</h2>
+                          </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="accordion-content">
+
+                          <div class="row">
+
+                                  <div class="col-md-3" *ngFor="let item of commonPipes">
+
+                                          <div class="card" [ngClass]="item.class">
+                                                  <div class="card-body "> 
+                                                          <a [href]="item.url" target="_blank"> {{item.label}}</a>
+                                                  </div>
+                                          </div>
+                                  </div>
+                          </div>
+                  </div>
+          </mat-expansion-panel> 
+
+          <mat-expansion-panel [expanded]="true"  hideToggle>
+                <mat-expansion-panel-header>
+                        <mat-panel-title>
+                                <h2>Example using pipes</h2>
+                        </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="accordion-content">
+                         <div class="row">
+                                 <div class="col-md-12">
+                                         <h3>Before Pipe  value is : {{defaultValue}} </h3>
+                                 </div>
+                                 <div class="col-md-12">
+                                        <h3>After Currency Pipe Value is : 
+                                                {{defaultValue | currency:'USD':'symbol-narrow':'4.2-2'}}
+                                        </h3>
+                                 </div>
+
+                                 <div class="col-md-12">
+                                        <h3>Before Date Pipe  value is : {{birthday}} </h3>
+                                </div>
+                                <div class="col-md-12">
+                                       <h3>After Pipe Value is : 
+                                                        {{ birthday | date }} <br/>
+                                                        Another format can be 
+                                                        {{ birthday | date:"MM/dd/yy" }}
+                                       </h3>
+                                </div>
+
+                                 <div class="col-md-12">
+                                        <h3>Chaining Pipes: </h3>
+                                        {{  asyncDate | async | date:'fullDate' | uppercase}}
+                                 </div>
+                                 <div class="col-md-12"></div>
+                                 <div class="col-md-12"></div>
+                                 <div class="col-md-12"></div>
+                         </div> 
+                </div>
+        </mat-expansion-panel> 
+
+
+        
+        <mat-expansion-panel [expanded]="true"  hideToggle>
+                <mat-expansion-panel-header>
+                        <mat-panel-title>
+                                <h2>Summary</h2>
+                        </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="accordion-content">
+                         <div class="row">
+                                 <div class="col-md-12">
+                                      
+  Pipes are a great way to encapsulate and share common display-value transformations.
+  Use them like styles, dropping them into your template's expressions to enrich the appeal and usability of your views.
+                                 </div>
+                                
+                         </div> 
+                </div>
+        </mat-expansion-panel> 
+
+  </mat-accordion>
+  

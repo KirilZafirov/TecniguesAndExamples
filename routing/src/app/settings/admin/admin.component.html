@@ -1,0 +1,13 @@
+<nav mat-tab-nav-bar >
+    <a mat-tab-link  
+        *ngFor="let routeLink of menuItems; let i = index;"
+        [routerLink]="routeLink.navigationLink"
+        routerLinkActive="mat-tab-link-active"
+        #rla="routerLinkActive"
+        
+        (click)="activeLinkIndex = i" 
+    >
+        {{routeLink.name}}
+    </a>
+</nav>
+<router-outlet></router-outlet>

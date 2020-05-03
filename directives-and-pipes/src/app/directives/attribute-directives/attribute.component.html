@@ -1,0 +1,89 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>Demo Attribute Directive</h1>
+      </mat-panel-title>
+      <mat-panel-description>
+        Attribute Directives are used as attributes of elements.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <h4>Pick a highlight color</h4>
+    <div>
+      <input type="radio" name="colors" (click)="color='lightgreen'">Green
+      <input type="radio" name="colors" (click)="color='yellow'">Yellow
+      <input type="radio" name="colors" (click)="color='cyan'">Cyan
+    </div>
+    <p [appHighlight]="color">Highlight me!</p>
+
+    <p [appHighlight]="color" defaultColor="violet">
+      Highlight me too!
+    </p>
+
+    <hr>
+    <p><i>Mouse over the following lines to see fixed highlights</i></p>
+
+    <p [appHighlight]="'yellow'">Highlighted in yellow</p>
+    <p appHighlight="orange">Highlighted in orange</p>
+    <mat-action-row>
+      <!-- <button mat-button color="warn" (click)="prevStep()" *ngIf="!isFirst || isLast">Previous</button> -->
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+      <!-- <button mat-button color="primary" (click)="nextStep()" *ngIf="isLast">End</button>  -->
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Attribute D.Example
+      </mat-panel-title>
+      <mat-panel-description>
+        Attribute Directives are used as attributes of elements.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <div class="wrapper">
+
+      <button appDropdown class="dropdown-btn" type="button">Menu</button>
+
+      <div class="dropdown">
+        <a href="/" class="dropdown-item">Find me on Medium</a>
+        <a href="/" class="dropdown-item">Find me on Twitter</a>
+        <a href="/" class="dropdown-item">Find me on Github</a>
+      </div>
+
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+      <!-- <button mat-button color="primary" (click)="nextStep()" *ngIf="isLast">End</button>  -->
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Summary
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    You learned
+    <ul>
+      <li> Build an attribute directive that modifies the behavior of an element.</li>
+      <li> Apply the directive to an element in a template.</li>
+      <li> Respond to events that change the directive's behavior.</li>
+      <li> Bind values to the directive.</li>
+    </ul>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>

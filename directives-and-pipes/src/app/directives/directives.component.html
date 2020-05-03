@@ -1,0 +1,101 @@
+<nav mat-tab-nav-bar [backgroundColor]="background" style="margin-top: 20px;">
+
+        <a mat-tab-link> Build In Directives
+        </a>
+</nav>
+
+<div class="container" style="margin: 40px 0;">
+
+        <mat-accordion class="example-headers-align">
+                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                        <h2>common</h2>
+                                </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="accordion-content">
+
+                                <div class="row">
+
+                                        <div class="col-md-3" *ngFor="let item of commonDirectives">
+
+                                                <div class="card" [ngClass]="item.class">
+                                                        <div class="card-body ">
+                                                                <a [href]="item.url" target="_blank"> {{item.label}}</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <mat-action-row>
+                                <!-- <button mat-button color="warn" (click)="prevStep()" *ngIf="!isFirst || isLast">Previous</button> -->
+                                <button mat-button color="primary" (click)="nextStep()">Next</button>
+                                <!-- <button mat-button color="primary" (click)="nextStep()" *ngIf="isLast">End</button>  -->
+                        </mat-action-row>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                        <h2>forms</h2>
+                                </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="accordion-content">
+
+                                <div class="row">
+                                        <div class="col-md-3" *ngFor="let item of formsDirectives">
+
+                                                <div class="card" [ngClass]="'bg-danger'">
+                                                        <div class="card-body ">
+                                                                <a [href]="item.url" target="_blank"> {{item.label}}</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                        </div>
+                        <mat-action-row>
+                                <button mat-button color="warn" (click)="setStep(0)">Previous</button>
+                                <button mat-button color="primary" (click)="setStep(2)">Next</button>
+                                <!-- <button mat-button color="primary" (click)="nextStep()" *ngIf="isLast">End</button>  -->
+                        </mat-action-row>
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                        <h2>router</h2>
+                                </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="accordion-content">
+
+                                <div class="row">
+
+                                        <div class="col-md-3" *ngFor="let item of routerDirectives">
+
+                                                <div class="card" [ngClass]="item.class">
+                                                        <div class="card-body ">
+                                                                <a [href]="item.url" target="_blank"> {{item.label}}</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                        </div>
+                        <mat-action-row>
+                                <button mat-button color="warn" (click)="setStep(1)">Previous</button>
+                                <button mat-button color="primary" (click)="nextStep()">End</button>
+                        </mat-action-row>
+                </mat-expansion-panel>
+        </mat-accordion>
+</div>
+
+<nav mat-tab-nav-bar [backgroundColor]="background">
+        <a mat-tab-link *ngFor="let link of links; let i = index;" [routerLink]="link.navigationLink"
+                [active]="activeLink == link.index" (click)="setActive(i)"> {{link.name}}
+        </a>
+</nav>
+<div class="content" role="main">
+        <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,11 @@
+
+<ng-container *ngIf="(detail$ | async) as details" >
+   ID: {{details.id}} <br/>
+   Product Name: {{details.name}} <br/>
+   Product Details: {{details.details}} <br/>
+   Product Price: {{details.price}} <br/>
+</ng-container>
+
+ <div *params="let username=usernameParam">
+   {{username}}
+ </div>

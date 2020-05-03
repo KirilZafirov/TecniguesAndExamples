@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <p>Power boost: 2 To the power of 10 is : {{2 | exponentialStrength: 10}}</p>
+
+
+
+    <h2>Power Boost Calculator</h2>
+    <div>Normal power: <input type="number" min="0" max="10" step="1" [(ngModel)]="power"></div>
+    <div>Boost factor: <input type="number"   min="0" max="10" step="1" [(ngModel)]="factor"></div>
+    <p>
+      Super Hero Power: {{power | exponentialStrength: factor}}
+    </p>
+
+  </div>
+
+  <div class="col-md-12">
+    <div *ngFor="let person of (people | impureList:'isOld':true)">
+      {{person.name}}
+    </div>
+  </div>
+</div>

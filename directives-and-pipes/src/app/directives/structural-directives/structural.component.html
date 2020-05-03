@@ -1,0 +1,148 @@
+
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Structural Directives
+      </mat-panel-title>
+      <mat-panel-description> 
+        Example of screen size structural Directive- Based on the screen size a certain element is being dispayed.
+      </mat-panel-description>
+    </mat-expansion-panel-header>   
+        There are a number of build in angular structural directives:
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <span *onlyForScreen="'desktop'"><h1>
+                This is a big screen
+              </h1></span>
+            </div>
+            <div class="col-md-4">
+              <span *onlyForScreen="'tablet'"><h1>
+                This is a tablet screen
+              </h1></span>
+            </div>
+            <div class="col-md-4">
+              
+            <span *onlyForScreen="'mobile'"><h1>
+              This is a small screens
+            </h1></span>
+            </div>
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="name">Breakpoint For Mobile</label>
+                <input type="number" 
+                class="form-control" 
+                id="name" 
+                required
+                [(ngModel)]="config.mobile"
+                name="mobile">
+              </div>
+          
+              <div class="form-group">
+                <label for="tablet">Breakpoint For Tablet</label>
+                <input type="number" class="form-control" id="tablet"
+                [(ngModel)]="config.tablet"
+                name="tablet">
+              </div>
+          
+              <button type="submit" class="btn btn-success">Submit</button>
+          
+            </form> 
+        </div> 
+        </div>
+    <mat-action-row> 
+      <button mat-button color="primary" (click)="nextStep()">Next</button>  
+    </mat-action-row>
+  </mat-expansion-panel> 
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Structural Directives
+      </mat-panel-title>
+      <mat-panel-description> 
+        Example of *ngFor Structural Directive
+      </mat-panel-description>
+    </mat-expansion-panel-header>   
+       <div class="row">
+        <div class="col-md-12" *ngFor="let item of data ;  let i = index ;let odd=odd; trackBy: trackById">
+          
+          <!-- <div class="alert" [ngClass]="getClass(i , odd , data.length)"> -->
+            <div class="alert" [ngClass]='odd | getRowClass:i : data.length '>
+            
+            {{item.label}} - Item
+            <div *appNgForObject="let propertyName from item; let indexObject=index">
+              [{{indexObject}}] {{propertyName}}: {{item[propertyName]}}
+             
+            </div>
+          </div> 
+        </div>
+       </div>
+       
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button> 
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Structural Directives
+      </mat-panel-title>
+      <mat-panel-description> 
+        Example of *ngSwitch and *ngSwitchCase Structural Directive
+      </mat-panel-description>
+    </mat-expansion-panel-header>   
+       <div class="row">
+        <div class="col-md-12">
+          <div>
+            Pick your favorite hero
+            (<label><input type="checkbox" checked (change)="hero.emotion = 'happy'">Happy</label>)
+            (<label><input type="checkbox" checked (change)="hero.emotion = 'sad'">Sad</label>)
+            (<label><input type="checkbox" checked (change)="hero.emotion = 'confused'">Confused</label>)
+          </div>
+           
+          <div [ngSwitch]="hero?.emotion">
+            <div   *ngSwitchCase="'happy'"> Happy </div>
+            <div   *ngSwitchCase="'sad'"> Sad</div>
+            <div   *ngSwitchCase="'confused'"> Confused</div>
+            <div   *ngSwitchDefault > Default</div>
+          </div>
+        </div>
+       </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button> 
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Summary
+      </mat-panel-title>
+      <mat-panel-description>  
+      </mat-panel-description>
+    </mat-expansion-panel-header>   
+       <div class="row">
+        <div class="col-md-12">
+          You learned
+          <ul>
+            <li> that structural directives manipulate HTML layout.</li>
+            <li>   to use {{element}} as a grouping element when there is no suitable host element.</li>
+            <li>     that the Angular desugars asterisk (*) syntax into a {{secondElement}}.</li>
+            <li>  how that works for the NgIf, NgFor and NgSwitch built-in directives.</li>
+            <li>  about the microsyntax that expands into a  {{secondElement}}.</li>
+            <li>  to write a custom structural directive, UnlessDirective.</li> 
+          </ul> 
+        </div>
+       </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button> 
+      <button mat-button color="primary" (click)="nextStep()">End</button> 
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>  

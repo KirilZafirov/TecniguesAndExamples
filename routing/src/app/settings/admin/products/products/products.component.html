@@ -1,0 +1,7 @@
+ 
+<ng-container *ngFor="let details of products$ | async"> 
+     <div (click)="navigateTo(details.id)"> 
+        <h3>Product Name: {{details.name}}</h3><br/>
+        <h4>Product Details: {{details.details}} </h4><br/> 
+     </div>
+</ng-container>
