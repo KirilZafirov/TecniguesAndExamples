@@ -1,9 +1,11 @@
 import { Component, Input } from "@angular/core";
-import {  trigger, transition, state, animate, style, AnimationEvent } from '@angular/animations';
+import {  trigger, transition, state, animate, style, AnimationEvent, keyframes, group, query } from '@angular/animations';
 
 const Open_Close_Trigger = 'openClose';
 const Open = 'open';
 const Closed = 'closed';
+const InProgress = 'inProgress';
+
 @Component({
     selector: 'app-open-close',
     templateUrl: './open-close.component.html',
@@ -21,17 +23,44 @@ const Closed = 'closed';
                 opacity: 0.5,
                 backgroundColor: 'green'
             }])), 
-              
+            
+            state(InProgress, style([{
+                height: '150px',
+                opacity: 0.8,
+                backgroundColor: 'red'
+            }])),  
+
             transition(`${Open} => ${Closed}`, [
                 animate('1s')
             ]),
-
             transition(`${Closed} => ${Open}`, [
                 animate('0.5s')
-            ])
-        ])
-      
-    ]
+            ]),
+            transition('* =>' + Closed, [
+                animate('1s')
+            ]),
+            transition('*  =>'+ Open, [
+                animate('0.5s')
+            ]),
+            transition ('* => '+ Open, [
+                animate ('1s',
+                  style ({ opacity: '*' }),
+                ),
+            ]),
+            transition('* => *', [
+                 animate('1s')
+            ]),
+            transition(`${Open} <=> ${Closed}`, [
+                animate('0.5s')
+            ]),
+         
+
+          
+            // keyframes([]),
+            // group([]),
+            // query('',[]),
+        ]),
+    ] ,
 })
 
 export class OpenCloseAnimationComponent {
@@ -53,27 +82,27 @@ export class OpenCloseAnimationComponent {
 
     @Input() logging = false;
     
-    // onAnimationEvent ( event: AnimationEvent ) {
-    //     if (!this.logging) {
-    //       return;
-    //     }
-    //     // openClose is trigger name in this example
-    //     console.warn(`Animation Trigger: ${event.triggerName}`);
+    onAnimationEvent ( event: AnimationEvent ) {
+        if (!this.logging) {
+          return;
+        }
+        // openClose is trigger name in this example
+        console.warn(`Animation Trigger: ${event.triggerName}`);
     
-    //     // phaseName is start or done
-    //     console.warn(`Phase: ${event.phaseName}`);
+        // phaseName is start or done
+        console.warn(`Phase: ${event.phaseName}`);
     
-    //     // in our example, totalTime is 1000 or 1 second
-    //     console.warn(`Total time: ${event.totalTime}`);
+        // in our example, totalTime is 1000 or 1 second
+        console.warn(`Total time: ${event.totalTime}`);
     
-    //     // in our example, fromState is either open or closed
-    //     console.warn(`From: ${event.fromState}`);
+        // in our example, fromState is either open or closed
+        console.warn(`From: ${event.fromState}`);
     
-    //     // in our example, toState either open or closed
-    //     console.warn(`To: ${event.toState}`);
+        // in our example, toState either open or closed
+        console.warn(`To: ${event.toState}`);
     
-    //     // the HTML element itself, the button in this case
-    //     console.warn(`Element: ${event.element}`);
-    //   }
+        // the HTML element itself, the button in this case
+        console.warn(`Element: ${event.element}`);
+      }
 
 }
